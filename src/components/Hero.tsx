@@ -52,12 +52,15 @@ const Hero: React.FC = () => {
               <p className="text-2xl font-serif">Maximum Price</p>
             </div>
           </div>
-          <div className="relative">
-            <input
+          <div className=" w-full">
+            <button className="bg-blue-600 w-full py-2 rounded-md text-white font-semibold text-xl">
+              Search
+            </button>
+            {/* <input
               type="text"
               placeholder="Search"
               className="w-full pl-10 py-2 border border-slate-400 rounded-full bg-gray-100 outline-none focus:ring-2 focus:ring-blue-400"
-            />
+            /> */}
           </div>
         </div>
       </div>
