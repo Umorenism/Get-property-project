@@ -46,10 +46,10 @@ const Hero: React.FC = () => {
 
           <div className="flex mb-4 mt-4 border border-slate-400">
             <div className="flex-1 text-center py-2 border-r border-slate-400">
-              <p className="text-2xl font-serif">Minimum Price</p>
+              <p className="text-2xl font-serif text-gray-400">Minimum Price</p>
             </div>
             <div className="flex-1 text-center py-2">
-              <p className="text-2xl font-serif">Maximum Price</p>
+              <p className="text-2xl font-serif text-gray-400">Maximum Price</p>
             </div>
           </div>
           <div className=" w-full">
