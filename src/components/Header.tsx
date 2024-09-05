@@ -1,208 +1,209 @@
 import React, { useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { TiThMenu } from "react-icons/ti";
-import logo from "../assets/get-pro.png";
-// import { FaUserCircle } from "react-icons/fa";
-const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [dropDown, setDropDown] = useState<boolean>(false);
+import { MdOutlineArrowDropDown } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
-  const toggleMenu = () => {
+export const Header: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleDrop = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggleDropDown = () => {
-    setDropDown(!dropDown);
-  };
-
   return (
-    <header className="fixed bg-slate-200 top-0 left-0 right-0 z-50 shadow-md">
-      <div className="flex justify-between items-center p-4 max-w-screen-xl mx-auto">
+    <header className="bg-white shadow-md fixed w-full z-10 h-[80px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-full">
         {/* Logo */}
-        <div className="text-2xl font-bold text-blue-500">
+        <div className="flex-shrink-0">
           <Link to="/">
-            <img src={logo} alt="" className="h-16 mb-4 " />
+            <button className="text-2xl font-bold text-gray-800">
+              Get Property
+            </button>
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 items-center gap-5">
-          <Link
-            to="/"
-            className="py-2 text-black font-serif text-xl"
-            onClick={toggleMenu}
-          >
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex space-x-8 items-center text-lg">
+          <Link to="/" className="text-gray-700 hover:text-orange-500">
             Home
           </Link>
-          <Link
-            to="/about"
-            className="py-2 text-black font-serif text-xl"
-            onClick={toggleMenu}
-          >
-            Property
-          </Link>
-          <Link
-            to="/services"
-            className="py-2 text-black font-serif text-xl"
-            onClick={toggleMenu}
-          >
-            Subscription
-          </Link>
-          <Link
-            to="/contact"
-            className="py-2 text-black font-serif text-xl"
-            onClick={toggleMenu}
-          >
-            News
-          </Link>
-          <Link
-            to="/contact"
-            className="py-2 text-black font-serif text-xl"
-            onClick={toggleMenu}
-          >
+          <div className="relative">
+            <button
+              onClick={toggleDrop}
+              className="text-gray-700 hover:text-orange-500 flex items-center"
+            >
+              Properties
+              <MdOutlineArrowDropDown className="ml-1" />
+            </button>
+            {isOpen && (
+              <div className="absolute top-full left-0 bg-white shadow-lg py-2 mt-1 rounded-md w-[200px]">
+                <Link
+                  to="/service1"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Service 1
+                </Link>
+                <Link
+                  to="/service2"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Service 2
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="text-gray-700 hover:text-orange-500 flex items-center"
+            >
+              Page
+              <MdOutlineArrowDropDown className="ml-1" />
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 bg-white shadow-lg py-2 mt-1 rounded-md w-[200px]">
+                <Link
+                  to="/service1"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Service 1
+                </Link>
+                <Link
+                  to="/service2"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Service 2
+                </Link>
+              </div>
+            )}
+          </div>
+          <Link to="/contact" className="text-gray-700 hover:text-orange-500">
             Contact
           </Link>
+          <Link to="/about" className="text-gray-700 hover:text-orange-500">
+            About us
+          </Link>
         </nav>
-        {/* Dropdown Button for Desktop */}
-        <button className="relative hidden md:block" onClick={toggleDropDown}>
-          <TiThMenu size={30} />
-          {dropDown && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full right-32 mt-2 bg-slate-300 shadow-lg rounded-md w-52 left-0 z-50"
-            >
-              <div className="flex flex-col">
-                <Link
-                  to="/"
-                  className="py-2 px-4 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
+
+        {/* Login/Signup */}
+        <div className="hidden md:flex items-center space-x-2">
+          <FaUserCircle size={30} className="text-gray-700" />
+          <Link to="/login" className="text-blue-700 hover:text-orange-500">
+            Login
+          </Link>
+          <span>/</span>
+          <Link to="/signup" className="text-blue-700 hover:text-orange-500">
+            Sign Up
+          </Link>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden">
+          <button
+            onClick={toggleMobileMenu}
+            className="text-gray-700 focus:outline-none"
+          >
+            {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="absolute top-[80px] left-0 w-full bg-white shadow-lg">
+            <nav className="flex flex-col space-y-2 p-4">
+              <Link to="/" className="text-gray-700 hover:text-orange-500">
+                Home
+              </Link>
+              <div className="relative">
+                <button
+                  onClick={toggleDrop}
+                  className="text-gray-700 hover:text-orange-500 flex items-center w-full"
                 >
-                  Buy
-                </Link>
-                <hr />
-                <Link
-                  to="/about"
-                  className="py-2 px-4 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
+                  Properties
+                  <MdOutlineArrowDropDown className="ml-1" />
+                </button>
+                {isOpen && (
+                  <div className="mt-1 space-y-1">
+                    <Link
+                      to="/service1"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Service 1
+                    </Link>
+                    <Link
+                      to="/service2"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Service 2
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <div className="relative">
+                <button
+                  onClick={toggleDropdown}
+                  className="text-gray-700 hover:text-orange-500 flex items-center w-full"
                 >
-                  Sell
-                </Link>
-                <hr />
+                  Page
+                  <MdOutlineArrowDropDown className="ml-1" />
+                </button>
+                {isDropdownOpen && (
+                  <div className="mt-1 space-y-1">
+                    <Link
+                      to="/service1"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Service 1
+                    </Link>
+                    <Link
+                      to="/service2"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Service 2
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <Link
+                to="/contact"
+                className="text-gray-700 hover:text-orange-500"
+              >
+                Contact
+              </Link>
+              <Link to="/about" className="text-gray-700 hover:text-orange-500">
+                About us
+              </Link>
+              <div className="flex items-center space-x-2 mt-4">
+                <FaUserCircle size={30} className="text-gray-700" />
                 <Link
-                  to="/services"
-                  className="py-2 px-4 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
-                >
-                  Explore
-                </Link>
-                <hr />
-                <Link
-                  to="/contact"
-                  className="py-2 px-4 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
-                >
-                  Request a Property
-                </Link>
-                <hr />
-                <Link
-                  to="/contact"
-                  className="py-2 px-4 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
-                >
-                  Post a Property
-                </Link>
-                <hr />
-                <Link
-                  to="/contact"
-                  className="py-2 px-4 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
-                >
-                  News
-                </Link>
-                <hr />
-                <Link
-                  to="/contact"
-                  className="py-2 px-4 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
-                >
-                  Sign up
-                </Link>
-                <hr />
-                <Link
-                  to="/contact"
-                  className="py-2 px-4 mb-3 text-black hover:bg-gray-100 text-lg"
-                  onClick={() => setDropDown(false)}
+                  to="/login"
+                  className="text-blue-700 hover:text-orange-500"
                 >
                   Login
                 </Link>
+                <span>/</span>
+                <Link
+                  to="/signup"
+                  className="text-blue-700 hover:text-orange-500"
+                >
+                  Sign Up
+                </Link>
               </div>
-            </motion.div>
-          )}
-        </button>
-
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-black" onClick={toggleMenu}>
-          <TiThMenu size={28} />
-        </button>
+            </nav>
+          </div>
+        )}
       </div>
-
-      {/* Mobile Navigation Menu */}
-      {isOpen && (
-        <motion.nav
-          initial={{ opacity: 0, x: "100%" }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: "100%" }}
-          className="fixed inset-0 bg-white shadow-lg md:hidden z-50"
-        >
-          <div className="flex justify-end p-4">
-            <button className="text-black" onClick={toggleMenu}>
-              <TiThMenu size={28} />
-            </button>
-          </div>
-          <div className="flex flex-col items-center p-4">
-            <Link
-              to="/"
-              className="py-2 text-black text-lg"
-              onClick={toggleMenu}
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="py-2 text-black text-lg"
-              onClick={toggleMenu}
-            >
-              Property
-            </Link>
-            <Link
-              to="/services"
-              className="py-2 text-black text-lg"
-              onClick={toggleMenu}
-            >
-              Subscription
-            </Link>
-            <Link
-              to="/contact"
-              className="py-2 text-black text-lg"
-              onClick={toggleMenu}
-            >
-              News
-            </Link>
-            <Link
-              to="/contact"
-              className="py-2 text-black text-lg"
-              onClick={toggleMenu}
-            >
-              Contact
-            </Link>
-          </div>
-        </motion.nav>
-      )}
     </header>
   );
 };
-
-export default Header;
