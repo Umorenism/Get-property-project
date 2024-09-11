@@ -7,18 +7,19 @@ import { FaUserCircle } from "react-icons/fa";
 export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isPropertiesDropdownOpen, setIsPropertiesDropdownOpen] =
+    useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const togglePropertiesDropdown = () => {
+    setIsPropertiesDropdownOpen(!isPropertiesDropdownOpen);
   };
 
-  const toggleDrop = () => {
-    setIsOpen(!isOpen);
+  const togglePageDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
@@ -40,13 +41,13 @@ export const Header: React.FC = () => {
           </Link>
           <div className="relative">
             <button
-              onClick={toggleDrop}
+              onClick={togglePropertiesDropdown}
               className="text-gray-700 hover:text-orange-500 flex items-center"
             >
               Properties
               <MdOutlineArrowDropDown className="ml-1" />
             </button>
-            {isOpen && (
+            {isPropertiesDropdownOpen && (
               <div className="absolute top-full left-0 bg-white shadow-lg py-2 mt-1 rounded-md w-[200px]">
                 <Link
                   to="/service1"
@@ -65,7 +66,7 @@ export const Header: React.FC = () => {
           </div>
           <div className="relative">
             <button
-              onClick={toggleDropdown}
+              onClick={togglePageDropdown}
               className="text-gray-700 hover:text-orange-500 flex items-center"
             >
               Page
@@ -74,16 +75,16 @@ export const Header: React.FC = () => {
             {isDropdownOpen && (
               <div className="absolute top-full left-0 bg-white shadow-lg py-2 mt-1 rounded-md w-[200px]">
                 <Link
-                  to="/service1"
+                  to="/page1"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
-                  Service 1
+                  Page 1
                 </Link>
                 <Link
-                  to="/service2"
+                  to="/page2"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
-                  Service 2
+                  Page 2
                 </Link>
               </div>
             )}
@@ -127,13 +128,13 @@ export const Header: React.FC = () => {
               </Link>
               <div className="relative">
                 <button
-                  onClick={toggleDrop}
+                  onClick={togglePropertiesDropdown}
                   className="text-gray-700 hover:text-orange-500 flex items-center w-full"
                 >
                   Properties
                   <MdOutlineArrowDropDown className="ml-1" />
                 </button>
-                {isOpen && (
+                {isPropertiesDropdownOpen && (
                   <div className="mt-1 space-y-1">
                     <Link
                       to="/service1"
@@ -152,7 +153,7 @@ export const Header: React.FC = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={toggleDropdown}
+                  onClick={togglePageDropdown}
                   className="text-gray-700 hover:text-orange-500 flex items-center w-full"
                 >
                   Page
@@ -161,16 +162,16 @@ export const Header: React.FC = () => {
                 {isDropdownOpen && (
                   <div className="mt-1 space-y-1">
                     <Link
-                      to="/service1"
+                      to="/page1"
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
-                      Service 1
+                      Page 1
                     </Link>
                     <Link
-                      to="/service2"
+                      to="/page2"
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
-                      Service 2
+                      Page 2
                     </Link>
                   </div>
                 )}
@@ -184,15 +185,14 @@ export const Header: React.FC = () => {
               <Link to="/about" className="text-gray-700 hover:text-orange-500">
                 About us
               </Link>
-              <div className="flex items-center space-x-2 mt-4">
-                <FaUserCircle size={30} className="text-gray-700" />
+              <div className="flex flex-col  mt-4">
                 <Link
                   to="/login"
-                  className="text-blue-700 hover:text-orange-500"
+                  className="text-blue-700 hover:text-orange-500 mb-4"
                 >
                   Login
                 </Link>
-                <span>/</span>
+
                 <Link
                   to="/signup"
                   className="text-blue-700 hover:text-orange-500"
