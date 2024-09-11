@@ -54,11 +54,11 @@
 const Rents = () => {
   return (
     <div className="w-full flex flex-col items-center absolute bottom-0">
-      <div className=" flex w-full rounded-md  md:max-w-[1300px]">
-        <button className=" py-3 bg-white text-black px-10  rounded-md">
+      <div className=" flex w-full rounded-md md:gap-2  md:max-w-[1300px] pl-4">
+        <button className="  py-4 bg-white text-black md:px-20 px-12 rounded-md border border-slate-500">
           Sell
         </button>
-        <button className="text-white py-3 bg-green-900 px-10  rounded-md">
+        <button className="text-white py-4 bg-green-900 md:px-20 px-12 rounded-md border border-slate-500">
           Rent
         </button>
       </div>
