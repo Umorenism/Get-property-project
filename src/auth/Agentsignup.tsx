@@ -68,7 +68,7 @@ const AgentSignup: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-house2">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg mt-10">
         <h2 className="text-2xl font-bold mb-4 text-center">Agent Signup</h2>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}

@@ -8,7 +8,24 @@
   }
    */
 
-
+.bg-house{
+  background-image: url('/public/hux.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.bg-house2{
+  background-image: url('/public/hux2.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.bg-img{
+  background-image: url('/public/hux3.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
 
 
