@@ -49,6 +49,8 @@ import { Header } from "./components/Header";
 import HomeScreen from "./components/HomeScreen";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
+import AgentSignup from "./auth/Agentsignup";
+import AdminSignup from "./auth/AdminSignup";
 
 // Dummy function to check if user is signed in (this should be replaced with real authentication logic)
 const checkAuth = () => {
@@ -78,6 +80,8 @@ const App: React.FC = () => {
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/signup/agent" element={<AgentSignup />} />
+        <Route path="/signup/admin" element={<AdminSignup />} />
         <Route path="/" element={<HomeScreen />} /> {/* HomeScreen is public */}
         {/* Protected routes */}
         <Route

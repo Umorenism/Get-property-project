@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -9,7 +9,11 @@ export const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPropertiesDropdownOpen, setIsPropertiesDropdownOpen] =
     useState(false);
-
+  const navigate = useNavigate();
+  const [sigupopen, setSignupOpen] = useState(false);
+  const handlesignupopen = () => {
+    setSignupOpen(!sigupopen);
+  };
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -20,6 +24,10 @@ export const Header: React.FC = () => {
 
   const togglePageDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+  const handleRoute = (path: any) => {
+    navigate(path);
+    setSignupOpen(false); // Close the dropdown after navigation
   };
 
   return (
@@ -104,10 +112,39 @@ export const Header: React.FC = () => {
             Login
           </Link>
           <span>/</span>
-          <Link to="/signup" className="text-blue-700 hover:text-orange-500">
+          <Link
+            to=""
+            className="text-blue-700 hover:text-orange-500"
+            onClick={handlesignupopen}
+          >
             Sign Up
           </Link>
         </div>
+        {sigupopen && (
+          <div className="absolute top-full right-[120px] bg-white shadow-lg py-2 mt-1 rounded-md w-[300px]">
+            <div
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => handleRoute("/signup")}
+            >
+              User
+            </div>
+            <hr />
+            <div
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => handleRoute("/signup/agent")}
+            >
+              Agent
+            </div>
+            <hr />
+            <div
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => handleRoute("/signup/admin")}
+            >
+              Admin
+            </div>
+            <hr />
+          </div>
+        )}
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
